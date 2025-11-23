@@ -2,6 +2,7 @@
 import imaplib
 import email
 from email.header import decode_header
+from tqdm import tqdm
 
 def fetch_imap_emails(username, password, imap_server="imap.gmail.com"):
     mail = imaplib.IMAP4_SSL(imap_server)
@@ -10,7 +11,7 @@ def fetch_imap_emails(username, password, imap_server="imap.gmail.com"):
     status, messages = mail.search(None, "ALL")
     email_ids = messages[0].split()
     emails = []
-    for num in email_ids:
+    for num in tqdm(email_ids, desc="Fetching emails", unit="email"):
         status, msg_data = mail.fetch(num, "(RFC822)")
         raw_email = msg_data[0][1] # The entire email message is a byte string
         msg = email.message_from_bytes(raw_email)

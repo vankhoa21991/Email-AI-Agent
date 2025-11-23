@@ -1,4 +1,4 @@
-from langchain.prompts import PromptTemplate
+from langchain_core.prompts import PromptTemplate
 from config import DEEPSEEK_API_KEY  # Import the key from your config
 from langchain_openai import ChatOpenAI
 

@@ -1,4 +1,4 @@
-from langchain.prompts import PromptTemplate
+from langchain_core.prompts import PromptTemplate
 from config import DEEPSEEK_API_KEY  # Import the key from your config
 from langchain_openai import ChatOpenAI
 from utils.formatter import clean_text
@@ -10,7 +10,7 @@ def summarize_email(email: dict) -> str:
     Uses an LLM to generate a concise summary of the email content.
     """
     prompt_template = PromptTemplate(
-        input_var=["content"],
+        input_variables=["content"],
         template="Summarize the following email content in 2 to 3 sentences: {content}"
     )
     
